@@ -22,6 +22,7 @@
   --shadow-sm:0 12px 26px -18px rgba(70,50,30,.35);
   --aurora-1:#e6c9a8; --aurora-2:#d9a878; --aurora-3:#c98f6a; --aurora-4:#efe0cb;
   --header-bg:rgba(250,246,238,.82);
+  --hero-g1:rgba(217,168,120,.38); --hero-g2:rgba(198,155,116,.32); --hero-g3:rgba(176,122,82,.18);
 }
 /* ---------- Тёмная тема: системная (без явного выбора) ---------- */
 @media (prefers-color-scheme: dark){
@@ -43,6 +44,7 @@
     --shadow-sm:0 14px 30px -18px rgba(0,0,0,.6);
     --aurora-1:#5a4326; --aurora-2:#7a5630; --aurora-3:#3a2c1c; --aurora-4:#8a6a3a;
     --header-bg:rgba(25,20,16,.8);
+    --hero-g1:rgba(122,86,48,.55); --hero-g2:rgba(90,67,38,.5); --hero-g3:rgba(210,158,112,.16);
   }
 }
 /* ---------- Тёмная тема: явный выбор (toggle) ---------- */
@@ -64,6 +66,7 @@
   --shadow-sm:0 14px 30px -18px rgba(0,0,0,.6);
   --aurora-1:#5a4326; --aurora-2:#7a5630; --aurora-3:#3a2c1c; --aurora-4:#8a6a3a;
   --header-bg:rgba(25,20,16,.8);
+  --hero-g1:rgba(122,86,48,.55); --hero-g2:rgba(90,67,38,.5); --hero-g3:rgba(210,158,112,.16);
 }
 
 /* ---------- Reset / base ---------- */
@@ -170,8 +173,14 @@ h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-
 .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
 
 /* ---------- Hero ---------- */
-.hero{position:relative;overflow:hidden;padding-top:44px;padding-bottom:64px}
-.aurora{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero{
+  position:relative;overflow:hidden;padding-top:44px;padding-bottom:64px;
+  background:
+    radial-gradient(55% 45% at 22% 18%, var(--hero-g1), transparent 68%),
+    radial-gradient(50% 45% at 82% 28%, var(--hero-g2), transparent 66%),
+    radial-gradient(65% 55% at 60% 105%, var(--hero-g3), transparent 70%),
+    var(--bg);
+}
 .hero-grain{
   position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.35;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
@@ -234,7 +243,6 @@ h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
-  .aurora{display:none}
   .marquee-track{animation:none}
   .scroll-cue .line{animation:none}
 }
