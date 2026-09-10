@@ -264,6 +264,31 @@ h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-
 .card-foot .dur{font-size:.82rem;color:var(--muted)}
 .card-foot .price{font-weight:700;font-size:1.1rem;color:var(--ink);font-variant-numeric:tabular-nums}
 
+/* ---------- Группы услуг (Тело / Лицо / Спа) ---------- */
+.group-title{
+  font-size:clamp(1.5rem,3.2vw,2rem);margin:0 0 18px;
+  display:flex;align-items:center;gap:14px;color:var(--ink);
+}
+.group-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.cards + .group-title{margin-top:44px}
+.group-note{
+  margin:18px 0 0;padding:14px 18px;text-align:center;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  color:var(--muted);font-size:.92rem;
+}
+.group-note b{color:var(--ink);font-variant-numeric:tabular-nums}
+.group-note + .group-title{margin-top:44px}
+
+/* Широкая карточка спа-ритуала */
+.card-wide{display:grid;grid-template-columns:1fr}
+.card-wide .card-photo{aspect-ratio:16/10}
+@media (min-width:760px){
+  .card-wide{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:stretch}
+  .card-wide .card-photo{aspect-ratio:auto;height:100%}
+  .card-wide .card-body{padding:28px 30px 30px;justify-content:center}
+  .card-wide .card-desc{flex:0 0 auto}
+}
+
 .services-cta{text-align:center;margin-top:38px}
 .services-cta .note{color:var(--muted);font-size:.85rem;margin:12px 0 0}
 
