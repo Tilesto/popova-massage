@@ -258,6 +258,7 @@ h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-
 .card-photo{aspect-ratio:16/10;border-radius:0;overflow:hidden;position:relative;background:var(--ph-bg)}
 .card:hover .card-photo img{transform:scale(1.05)}
 .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card > .card-body:first-child{padding-top:26px}
 .card-body h3{font-size:1.5rem}
 .card-desc{color:var(--muted);font-size:.92rem;margin:0;flex:1}
 .card-foot{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:10px;padding-top:14px;border-top:1px solid var(--line)}
@@ -318,17 +319,46 @@ h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-
 }
 
 /* ---------- Reviews ---------- */
-.reviews-grid{display:grid;grid-template-columns:1fr;gap:18px}
+.reviews{position:relative}
+.reviews-track{
+  display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;
+  padding:4px 2px;margin:-4px -2px;
+}
+.reviews-track::-webkit-scrollbar{display:none}
+.reviews-track:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:20px}
 .review{
+  flex:0 0 100%;min-width:0;scroll-snap-align:start;
   background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px 20px;margin:0;
   display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow-sm);
 }
 .review .stars{color:var(--accent);letter-spacing:2px;font-size:.95rem}
 .review blockquote{margin:0;font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-style:italic;line-height:1.45;color:var(--ink)}
 .review figcaption{display:flex;align-items:center;gap:12px;margin-top:auto}
-.ph-avatar{width:40px;height:40px;border-radius:50%;background:var(--ph-bg);border:1.5px dashed var(--ph-line);flex:0 0 auto}
-.rv-name{font-size:.88rem;font-weight:600;color:var(--muted)}
-@media (min-width:760px){ .reviews-grid{grid-template-columns:repeat(3,1fr)} }
+.rv-ava{
+  width:42px;height:42px;border-radius:50%;flex:0 0 auto;
+  background:var(--ph-bg);border:1px solid var(--line);color:var(--accent);
+  display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:1.3rem;
+}
+.rv-who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.rv-name{font-size:.9rem;font-weight:600;color:var(--ink)}
+.rv-date{font-size:.76rem;color:var(--muted)}
+/* Управление каруселью */
+.rv-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.rv-nav{
+  width:42px;height:42px;border-radius:50%;flex:0 0 auto;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);color:var(--ink);
+  display:grid;place-items:center;transition:border-color .25s ease,color .25s ease,opacity .25s ease;
+}
+.rv-nav svg{width:20px;height:20px}
+.rv-nav:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.rv-dots{display:flex;align-items:center;gap:8px}
+.rv-dot{
+  width:8px;height:8px;border-radius:50%;padding:0;cursor:pointer;
+  background:var(--line);border:0;transition:background .25s ease,transform .25s ease;
+}
+.rv-dot.is-active{background:var(--accent);transform:scale(1.35)}
+@media (min-width:760px){ .review{flex-basis:calc(50% - 9px)} }
 
 /* ---------- CTA band ---------- */
 .cta-band{
